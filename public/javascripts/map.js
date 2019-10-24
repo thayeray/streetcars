@@ -16,11 +16,21 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
 
 // fetch the data from our API and render it on the map:
 $.getJSON('/api/streetcars', function(data) {
-    L.geoJson(data, {
+    var geojson = L.geoJson(data, {
         style: {
-            color: "#5322A4",
+            color: "#354ae9",
             opacity: 0.4,
             weight: 3
         }
-    }).addTo(map);
+    });
+    geojson.addTo(map);
+    geojson.bindPopup(function(event){
+        var props = event.feature.properties;
+        var label = `
+            <b>Detail:</b> ${props.detail}
+            </br>
+            <b>Line ID:</b> ${props.id}
+            `;
+        return label;
+    });
 });
