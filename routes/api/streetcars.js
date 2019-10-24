@@ -44,6 +44,7 @@ router.get('/', function(req, res) {
             return res.status(status).json({"message": "There was a problem communicating with the server"});
         }
         res.status(200).json(results.rows[0]['dataset'])
+        console.log(results.rows[0]['dataset'])
     });
 });
 

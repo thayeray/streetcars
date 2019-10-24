@@ -13,3 +13,14 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
+
+// fetch the data from our API and render it on the map:
+$.getJSON('/api/streetcars', function(data) {
+    L.geoJson(data, {
+        style: {
+            color: "#5322A4",
+            opacity: 0.4,
+            weight: 3
+        }
+    }).addTo(map);
+});
